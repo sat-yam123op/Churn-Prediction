@@ -9,12 +9,6 @@ The project includes a trained Machine Learning model, a FastAPI prediction API,
 ### Frontend
 https://churn-prediction-frontend-ja99.onrender.com/
 
-### Prediction API
-https://churn-prediction-euo6.onrender.com/
-
-### API Documentation
-https://churn-prediction-euo6.onrender.com/docs
-
 ---
 
 ## 📌 Project Overview

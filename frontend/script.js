@@ -3,9 +3,13 @@
 // ==========================================
 
 // Deployed FastAPI endpoint
-const API_URL = "/predict";
+const API_URL = "https://churn-prediction-euo6.onrender.com/predict";
 
-// Get HTML elements
+
+// ==========================================
+// Get HTML Elements
+// ==========================================
+
 const form = document.getElementById("churnForm");
 const predictBtn = document.getElementById("predictBtn");
 
@@ -26,14 +30,14 @@ form.addEventListener("submit", async function (event) {
     // Prevent page refresh
     event.preventDefault();
 
-    // Hide old results/errors
+    // Hide previous result/error
     result.classList.add("hidden");
     error.classList.add("hidden");
 
     // Show loading
     loading.classList.remove("hidden");
 
-    // Disable button while prediction is running
+    // Disable button
     predictBtn.disabled = true;
     predictBtn.textContent = "Predicting...";
 
@@ -110,8 +114,15 @@ form.addEventListener("submit", async function (event) {
         });
 
 
-        // Check whether API returned an error
+        // ==========================================
+        // Check API Response
+        // ==========================================
+
         if (!response.ok) {
+
+            const errorData = await response.text();
+
+            console.error("API Error:", errorData);
 
             throw new Error(
                 `API request failed with status ${response.status}`
@@ -119,8 +130,10 @@ form.addEventListener("submit", async function (event) {
         }
 
 
-        // Convert API response to JSON
+        // Convert response to JSON
         const data = await response.json();
+
+        console.log("Prediction response:", data);
 
 
         // ==========================================
